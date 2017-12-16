@@ -62,9 +62,11 @@ func (q *QueueController) updateTaskSet(assignedTS map[string]*schedulercache.Ta
 	for _, ts := range assignedTS {
 		cpuRes := ts.TaskSet().Status.Allocated.Resources["cpu"].DeepCopy()
 		memRes := ts.TaskSet().Status.Allocated.Resources["memory"].DeepCopy()
+		gpuRes := ts.TaskSet().Status.Allocated.Resources["NvidiaGPU"].DeepCopy()
 		cpuInt, _ := cpuRes.AsInt64()
 		memInt, _ := memRes.AsInt64()
-		glog.V(4).Infof("scheduler, assign taskset %s cpu %d memory %d\n", ts.Name(), cpuInt, memInt)
+		gpuInt, _ := gpuRes.AsInt64()
+		glog.V(4).Infof("scheduler, assign taskset %s cpu %d memory %d gpu %d\n", ts.Name(), cpuInt, memInt, gpuInt)
 	}
 	taskSetClient, _, err := client.NewTaskSetClient(q.config)
 	if err != nil {
