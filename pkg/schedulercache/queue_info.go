@@ -37,9 +37,11 @@ func CompareResources(res1 map[apiv1.ResourceName]resource.Quantity, res2 map[ap
 	cpu2 := res2["cpu"].DeepCopy()
 	memory1 := res1["memory"].DeepCopy()
 	memory2 := res2["memory"].DeepCopy()
+	gpu1 := res1["NvidiaGPU"].DeepCopy()
+	gpu2 := res2["NvidiaGPU"].DeepCopy()
 
-	if cpu1.Cmp(cpu2) <= 0 && memory1.Cmp(memory2) <= 0 {
-		if cpu1.Cmp(cpu2) == 0 && memory1.Cmp(memory2) == 0 {
+	if cpu1.Cmp(cpu2) <= 0 && memory1.Cmp(memory2) <= 0 && gpu1.Cmp(gpu2) <= 0 {
+		if cpu1.Cmp(cpu2) == 0 && memory1.Cmp(memory2) == 0 && gpu1.Cmp(gpu2) == 0 {
 			return 0
 		} else {
 			return -1
