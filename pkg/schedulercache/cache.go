@@ -485,34 +485,39 @@ func (sc *schedulerCache) addQueue(queue *apiv1.Queue) error {
 	// init Request if it is nil
 	if info.Queue().Spec.Request.Resources == nil {
 		info.Queue().Spec.Request.Resources = map[apiv1.ResourceName]resource.Quantity{
-			"cpu":    resource.MustParse("0"),
-			"memory": resource.MustParse("0"),
+			"cpu":       resource.MustParse("0"),
+			"memory":    resource.MustParse("0"),
+			"NvidiaGPU": resource.MustParse("0"),
 		}
 	}
 
 	// init Deserved/Allocated/Used/Preemping if it is nil
 	if info.Queue().Status.Deserved.Resources == nil {
 		info.Queue().Status.Deserved.Resources = map[apiv1.ResourceName]resource.Quantity{
-			"cpu":    resource.MustParse("0"),
-			"memory": resource.MustParse("0"),
+			"cpu":       resource.MustParse("0"),
+			"memory":    resource.MustParse("0"),
+			"NvidiaGPU": resource.MustParse("0"),
 		}
 	}
 	if info.Queue().Status.Allocated.Resources == nil {
 		info.Queue().Status.Allocated.Resources = map[apiv1.ResourceName]resource.Quantity{
-			"cpu":    resource.MustParse("0"),
-			"memory": resource.MustParse("0"),
+			"cpu":       resource.MustParse("0"),
+			"memory":    resource.MustParse("0"),
+			"NvidiaGPU": resource.MustParse("0"),
 		}
 	}
 	if info.Queue().Status.Used.Resources == nil {
 		info.Queue().Status.Used.Resources = map[apiv1.ResourceName]resource.Quantity{
-			"cpu":    resource.MustParse("0"),
-			"memory": resource.MustParse("0"),
+			"cpu":       resource.MustParse("0"),
+			"memory":    resource.MustParse("0"),
+			"NvidiaGPU": resource.MustParse("0"),
 		}
 	}
 	if info.Queue().Status.Preempting.Resources == nil {
 		info.Queue().Status.Preempting.Resources = map[apiv1.ResourceName]resource.Quantity{
-			"cpu":    resource.MustParse("0"),
-			"memory": resource.MustParse("0"),
+			"cpu":       resource.MustParse("0"),
+			"memory":    resource.MustParse("0"),
+			"NvidiaGPU": resource.MustParse("0"),
 		}
 	}
 	sc.queues[queue.Name] = info
