@@ -3,11 +3,16 @@ kind: Deployment
 metadata:
   name: kube-batchd
   labels:
+    app: kube-batchd
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
 spec:
+  selector:
+    matchLabels:
+      app: kube-batchd
   replicas: {{ .Values.replicaCount }}
   template:
     metadata:
+      name: kube-batchd
       labels:
         app: kube-batchd
     spec:
@@ -17,5 +22,5 @@ spec:
         args: ["--logtostderr", "--v", "3", "--enable-namespace-as-queue"]
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         resources:
-{{ toYaml .Values.resources | indent 10 }}
+{{ toYaml .Values.resources | indent 12 }}
 

@@ -1,4 +1,4 @@
-From ubuntu:18.04
+From ubuntu:16.04
 
 ADD kube-batchd /usr/local/bin
 
